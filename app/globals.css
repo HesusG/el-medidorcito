@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+
+  /* Neo-brutalist Palette (Girly Edition) */
+  --primary: #FF90E8;
+  /* Pink */
+  --secondary: #FFC0CB;
+  /* Light Pink */
+  --accent: #9d4edd;
+  /* Purple */
+  --danger: #FF005C;
+  /* Heart Red */
+
+  --border-color: #000000;
+  --shadow-offset: 4px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Custom Utilities for Neo-brutalism */
+  --box-shadow-neo: 4px 4px 0px 0px #000000;
+  --box-shadow-neo-sm: 2px 2px 0px 0px #000000;
+  --box-shadow-neo-lg: 8px 8px 0px 0px #000000;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  border-color: var(--border-color);
+}
+
+/* Base styles for brutalist look */
+@layer base {
+
+  button,
+  .card,
+  input,
+  select,
+  textarea {
+    border: 2px solid #000;
+  }
+}

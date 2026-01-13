@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to get user profile
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    
+    // Helper to check if user belongs to the couple of the resource
+    function belongsToCouple(coupleId) {
+      return getUserData().coupleId == coupleId;
+    }
+
+    // Users: 
+    // - Read: Own profile OR partner's profile (same coupleId)
+    // - Write: Own profile only
+    match /users/{userId} {
+      allow read: if request.auth != null && (request.auth.uid == userId || resource.data.coupleId == getUserData().coupleId);
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Couples: 
+    // - Create: Any auth user
+    // - Read: Any auth user (needed to check couple code for joining)
+    // - Update: Any auth user (logic for joining is handled in client, but ideally we'd validate 'members' array changes here)
+    match /couples/{coupleId} {
+      allow create: if request.auth != null;
+      allow read: if request.auth != null; 
+      allow update: if request.auth != null; // Simplified for this learning project
+    }
+
+    // Goals:
+    // - Read/Write if the user's coupleId matches the goal's coupleId
+    match /goals/{goalId} {
+      allow create: if request.auth != null && belongsToCouple(request.resource.data.coupleId);
+      allow read, update, delete: if request.auth != null && belongsToCouple(resource.data.coupleId);
+      
+      // Checkins (Subcollection):
+      // - Read: If have access to goal
+      // - Write: If have access to goal AND is writing their own uid
+      match /checkins/{checkinId} {
+        allow read: if request.auth != null && belongsToCouple(get(/databases/$(database)/documents/goals/$(goalId)).data.coupleId);
+        allow write: if request.auth != null 
+                     && belongsToCouple(get(/databases/$(database)/documents/goals/$(goalId)).data.coupleId)
+                     && request.resource.data.uid == request.auth.uid;
+      }
+    }
+  }
+}
