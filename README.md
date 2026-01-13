@@ -1,83 +1,68 @@
-# El Medidorcito (Couples Scorecard)
+# El Medidorcito 💖 (Couples Scorecard)
 
-Una aplicación web privada para parejas para realizar un seguimiento de metas compartidas y realizar un check-in semanal ("Balanced Scorecard" para relaciones).
+Una aplicación web moderna para parejas diseñada para fortalecer la relación mediante el seguimiento de metas compartidas, tácticas personalizadas y check-ins semanales. Inspirada en la metodología de "Balanced Scorecard", pero adaptada para el crecimiento personal y de pareja.
 
-**Estilo UI**: Neo-brutalismo.
-**Tech Stack**: Next.js 14, Tailwind CSS, Firebase (Auth + Firestore), Recharts.
+![Estilo UI](https://img.shields.io/badge/UI-Neo--Brutalist-pink)
+![Tech Stack](https://img.shields.io/badge/Stack-Next.js%2014%20%7C%20Firebase%20%7C%20Tailwind-blue)
 
-## Requisitos Previos
+## ✨ Características Principales
 
+- **Dashboard Estilo Scorecard**: Visualiza de un vistazo la salud de tus metas compartidas.
+- **Check-ins Semanales**: Sistema de puntuación (1-5) para evaluar el progreso y la percepción de cada uno.
+- **Tácticas de Acción**: Define pasos concretos para alcanzar tus metas y evalúa su efectividad con feedback visual (👍/👎).
+- **Personalización Total**:
+    - Selecciona colores vibrantes para cada meta individual.
+    - Cambia el fondo del Dashboard según tu estado de ánimo (6 temas disponibles).
+- **Análisis de Brecha (Gap Analysis)**: Gráficos intuitivos para identificar diferencias de percepción entre la pareja.
+- **Seguridad y Privacidad**: Espacios privados cifrados por pareja utilizando Firebase Auth y Firestore.
+- **Gestión de Espacios**: Posibilidad de abandonar un espacio o eliminarlo por completo.
+
+## 🚀 Instalación y Configuración
+
+### 1. Requisitos Previos
 - Node.js 18+
-- Una cuenta de Google (para Firebase)
+- Proyecto en Firebase (Authentication con Email/Password + Cloud Firestore)
 
-## Configuración de Firebase
+### 2. Configuración de Entorno
+Crea un archivo `.env.local` en la raíz del proyecto con tus credenciales de Firebase:
 
-1. Ve a [Firebase Console](https://console.firebase.google.com/) y crea un nuevo proyecto.
-2. **Authentication**:
-   - Ve a "Authentication" > "Sign-in method".
-   - Habilita **Email/Password**.
-3. **Firestore Database**:
-   - Ve a "Firestore Database".
-   - Crea una base de datos (comienza en modo de producción).
-   - Ve a la pestaña "Rules" y copia el contenido del archivo `firestore.rules` de este repositorio.
-   - Ve a la pestaña "Indexes" (es posible que necesites crear índices para consultas complejas, la consola te avisará si faltan).
-4. **Obtener Credenciales**:
-   - Ve a "Project Settings" (engranaje).
-   - En "Your apps", registra una nueva app web.
-   - Copia las variables de configuración (`apiKey`, `authDomain`, etc.).
+```bash
+NEXT_PUBLIC_FIREBASE_API_KEY=tu_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=tu_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=tu_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=tu_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=tu_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=tu_app_id
+```
 
-## Instalación Local
+### 3. Ejecución Local
+```bash
+# Instalar dependencias
+npm install
 
-1. Clona el repositorio.
-2. Instala dependencias:
-   ```bash
-   npm install
-   ```
-3. Configura las variables de entorno:
-   - Crea un archivo `.env` en la raíz (puedes copiar `.env.example` y renombrarlo).
-   - Rellena las variables con tus credenciales de Firebase.
-   ```
-   NEXT_PUBLIC_FIREBASE_API_KEY=...
-   ...
-   ```
-4. Ejecuta el servidor de desarrollo:
-   ```bash
-   npm run dev
-   ```
-5. Abre [http://localhost:3000](http://localhost:3000).
+# Iniciar servidor de desarrollo
+npm run dev
+```
 
-## Uso del Aplicativo (flujo)
+Abre [http://localhost:3000](http://localhost:3000) para ver el resultado.
 
-1. **Registro**: Crea una cuenta en `/signup`.
-2. **Setup**:
-   - La primera persona elige "Crear Nuevo" y obtiene un ID de pareja (se encuentra en su perfil de Firestore o URL si lo implementaste, para este MVP el código es interno, pero al crear se une automáticamente. Para invitar a la otra persona, ve a Firestore > `users` > tu usuario > copia el campo `coupleId` y envíaselo a tu pareja).
-   *Nota: En una versión futura se mostrará el código en el Dashboard.*
-3. **Unirse**: La segunda persona se registra y elige "Unirme", pegando el `coupleId`.
-4. **Metas**: Creen metas en `/goals/new`.
-5. **Check-in**: Cada semana, califiquen las metas.
-6. **Dashboard**: Vean sus puntajes y brechas.
+## 🛠️ Flujo de Usuario
 
-## Despliegue (Firebase App Hosting)
+1. **Crear Cuenta**: Regístrate con tu correo electrónico.
+2. **Configurar Espacio**:
+   - Una persona crea un "Nuevo Espacio".
+   - Obtendrá un **Código de Pareja** único (visible en el Dashboard).
+   - La otra persona se registra y elige "Unirme a un Espacio" usando ese código.
+3. **Establecer Metas**: Definan objetivos (Ej: "Tiempo de calidad", "Comunicación", "Finanzas") y asignen tácticas.
+4. **Seguimiento**: Realicen check-ins semanales y ajusten según los resultados y gráficos de insights.
 
-Esta app está lista para **Firebase App Hosting** (la nueva generación de hosting de Firebase para Next.js).
+## 📱 Tecnologías Utilizadas
 
-1. Sube tu código a GitHub.
-2. En Firebase Console, ve a **App Hosting**.
-3. "Get started" y conecta tu cuenta de GitHub.
-4. Selecciona el repositorio `el-medidorcito`.
-5. Configura las variables de entorno (las mismas del `.env`) en la configuración del backend de App Hosting.
-6. Despliega.
+- **Frontend**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Estilo**: [Tailwind CSS](https://tailwindcss.com/)
+- **Base de Datos & Auth**: [Firebase](https://firebase.google.com/)
+- **Gráficos**: [Recharts](https://recharts.org/)
+- **Iconos**: [Lucide React](https://lucide.dev/)
 
-## Estructura del Proyecto
-
-- `/app`: Rutas del App Router (Login, Dashboard, Goals, etc.)
-- `/components`:
-  - `/ui`: Componentes base Neo-brutalistas (Button, Card, Input).
-  - `/goals`: Componentes de negocio (GoalCard, CheckinForm).
-  - `/charts`: Gráficos Recharts.
-- `/lib`: Utilidades y constantes.
-- `/services`: Configuración de Firebase y Auth.
-
-## Licencia
-
-MIT.
+---
+Desarrollado con ❤️ para parejas que buscan crecer juntas.
