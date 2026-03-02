@@ -52,3 +52,6 @@ lint_output.txt
 *.log
 *.tmp
 .DS_Store
+
+# research
+research/chroma_db/

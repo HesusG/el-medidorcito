@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "likert_scale": {
+    "1": "Strongly Disagree / Muy en desacuerdo",
+    "2": "Disagree / En desacuerdo",
+    "3": "Neutral / Neutral",
+    "4": "Agree / De acuerdo",
+    "5": "Strongly Agree / Muy de acuerdo"
+  },
+  "questions": [
+    {
+      "id": "q01",
+      "construct": "emotional_security",
+      "text_en": "I feel safe expressing my deepest emotions with my partner.",
+      "text_es": "Me siento seguro/a expresando mis emociones más profundas con mi pareja.",
+      "reverse": false,
+      "source_instrument": "SIS Scale (adapted)",
+      "source_paper": "davies_cummings_1994.pdf"
+    },
+    {
+      "id": "q02",
+      "construct": "emotional_security",
+      "text_en": "When we disagree, I still feel emotionally safe in our relationship.",
+      "text_es": "Cuando no estamos de acuerdo, aún me siento emocionalmente seguro/a en nuestra relación.",
+      "reverse": false,
+      "source_instrument": "SIS Scale (adapted)",
+      "source_paper": "davies_cummings_1994.pdf"
+    },
+    {
+      "id": "q03",
+      "construct": "emotional_security",
+      "text_en": "I worry that conflicts could seriously damage our relationship.",
+      "text_es": "Me preocupa que los conflictos puedan dañar seriamente nuestra relación.",
+      "reverse": true,
+      "source_instrument": "SIS Scale (adapted)",
+      "source_paper": "forrest_davies_2008.pdf"
+    },
+    {
+      "id": "q04",
+      "construct": "emotional_security",
+      "text_en": "My partner's emotional reactions feel unpredictable to me.",
+      "text_es": "Las reacciones emocionales de mi pareja me parecen impredecibles.",
+      "reverse": true,
+      "source_instrument": "SIS Scale (adapted)",
+      "source_paper": "davies_cummings_1994.pdf"
+    },
+    {
+      "id": "q05",
+      "construct": "trust",
+      "text_en": "I can count on my partner to keep their promises to me.",
+      "text_es": "Puedo contar con que mi pareja cumplirá sus promesas.",
+      "reverse": false,
+      "source_instrument": "Trust Scale (adapted)",
+      "source_paper": "rempel_holmes_zanna_1985.pdf"
+    },
+    {
+      "id": "q06",
+      "construct": "trust",
+      "text_en": "I feel confident that my partner is honest with me, even about difficult things.",
+      "text_es": "Confío en que mi pareja es honesta conmigo, incluso sobre cosas difíciles.",
+      "reverse": false,
+      "source_instrument": "Trust Scale (adapted)",
+      "source_paper": "rempel_holmes_zanna_1985.pdf"
+    },
+    {
+      "id": "q07",
+      "construct": "trust",
+      "text_en": "I believe my partner has my best interests at heart.",
+      "text_es": "Creo que mi pareja tiene mis mejores intereses en mente.",
+      "reverse": false,
+      "source_instrument": "Trust Scale (adapted)",
+      "source_paper": "rempel_holmes_zanna_1985.pdf"
+    },
+    {
+      "id": "q08",
+      "construct": "trust",
+      "text_en": "I sometimes wonder if my partner is being completely truthful with me.",
+      "text_es": "A veces me pregunto si mi pareja está siendo completamente sincera conmigo.",
+      "reverse": true,
+      "source_instrument": "Trust Scale (adapted)",
+      "source_paper": "larzelere_huston_1980.pdf"
+    },
+    {
+      "id": "q09",
+      "construct": "communication",
+      "text_en": "My partner and I can discuss our problems calmly and respectfully.",
+      "text_es": "Mi pareja y yo podemos discutir nuestros problemas con calma y respeto.",
+      "reverse": false,
+      "source_instrument": "CPQ (adapted)",
+      "source_paper": "heavey_et_al_1996.pdf"
+    },
+    {
+      "id": "q10",
+      "construct": "communication",
+      "text_en": "I feel heard and understood when I share my feelings with my partner.",
+      "text_es": "Me siento escuchado/a y comprendido/a cuando comparto mis sentimientos con mi pareja.",
+      "reverse": false,
+      "source_instrument": "CPQ (adapted)",
+      "source_paper": "heavey_et_al_1996.pdf"
+    },
+    {
+      "id": "q11",
+      "construct": "communication",
+      "text_en": "During arguments, one of us tends to withdraw or shut down.",
+      "text_es": "Durante las discusiones, uno de nosotros tiende a retirarse o cerrarse.",
+      "reverse": true,
+      "source_instrument": "CPQ (adapted)",
+      "source_paper": "eldridge_christensen_2002.pdf"
+    },
+    {
+      "id": "q12",
+      "construct": "communication",
+      "text_en": "We avoid talking about topics that might cause conflict.",
+      "text_es": "Evitamos hablar sobre temas que podrían causar conflicto.",
+      "reverse": true,
+      "source_instrument": "CPQ (adapted)",
+      "source_paper": "heavey_et_al_1996.pdf"
+    },
+    {
+      "id": "q13",
+      "construct": "attachment",
+      "text_en": "I feel comfortable depending on my partner when I need support.",
+      "text_es": "Me siento cómodo/a dependiendo de mi pareja cuando necesito apoyo.",
+      "reverse": false,
+      "source_instrument": "ECR-R (adapted)",
+      "source_paper": "brennan_clark_shaver_1998.pdf"
+    },
+    {
+      "id": "q14",
+      "construct": "attachment",
+      "text_en": "I know my partner will be there for me when I need them.",
+      "text_es": "Sé que mi pareja estará ahí para mí cuando la necesite.",
+      "reverse": false,
+      "source_instrument": "ECR-R (adapted)",
+      "source_paper": "fraley_et_al_2011.pdf"
+    },
+    {
+      "id": "q15",
+      "construct": "attachment",
+      "text_en": "I find it difficult to allow myself to fully rely on my partner.",
+      "text_es": "Me resulta difícil permitirme depender completamente de mi pareja.",
+      "reverse": true,
+      "source_instrument": "ECR-R (adapted)",
+      "source_paper": "brennan_clark_shaver_1998.pdf"
+    },
+    {
+      "id": "q16",
+      "construct": "attachment",
+      "text_en": "I prefer not to show my partner how I feel deep inside.",
+      "text_es": "Prefiero no mostrarle a mi pareja cómo me siento en el fondo.",
+      "reverse": true,
+      "source_instrument": "ECR-R (adapted)",
+      "source_paper": "brennan_clark_shaver_1998.pdf"
+    },
+    {
+      "id": "q17",
+      "construct": "abandonment",
+      "text_en": "I rarely worry that my partner might want to leave me.",
+      "text_es": "Rara vez me preocupa que mi pareja quiera dejarme.",
+      "reverse": false,
+      "source_instrument": "ECR Anxiety Subscale (adapted)",
+      "source_paper": "wei_et_al_2007.pdf"
+    },
+    {
+      "id": "q18",
+      "construct": "abandonment",
+      "text_en": "I often need reassurance that my partner truly loves me.",
+      "text_es": "A menudo necesito que mi pareja me asegure que realmente me ama.",
+      "reverse": true,
+      "source_instrument": "ECR Anxiety Subscale (adapted)",
+      "source_paper": "wei_et_al_2007.pdf"
+    },
+    {
+      "id": "q19",
+      "construct": "abandonment",
+      "text_en": "I am afraid that my partner will lose interest in me over time.",
+      "text_es": "Tengo miedo de que mi pareja pierda interés en mí con el tiempo.",
+      "reverse": true,
+      "source_instrument": "ECR Anxiety Subscale (adapted)",
+      "source_paper": "wei_et_al_2007.pdf"
+    },
+    {
+      "id": "q20",
+      "construct": "abandonment",
+      "text_en": "When my partner is away, I feel secure about our relationship.",
+      "text_es": "Cuando mi pareja no está, me siento seguro/a sobre nuestra relación.",
+      "reverse": false,
+      "source_instrument": "ECR Anxiety Subscale (adapted)",
+      "source_paper": "bowlby_1969.pdf"
+    },
+    {
+      "id": "q21",
+      "construct": "independence",
+      "text_en": "I maintain my own interests and friendships outside of our relationship.",
+      "text_es": "Mantengo mis propios intereses y amistades fuera de nuestra relación.",
+      "reverse": false,
+      "source_instrument": "DSI (adapted)",
+      "source_paper": "skowron_schmitt_2003.pdf"
+    },
+    {
+      "id": "q22",
+      "construct": "independence",
+      "text_en": "I can disagree with my partner without feeling like it threatens our bond.",
+      "text_es": "Puedo estar en desacuerdo con mi pareja sin sentir que amenaza nuestro vínculo.",
+      "reverse": false,
+      "source_instrument": "DSI (adapted)",
+      "source_paper": "skowron_schmitt_2003.pdf"
+    },
+    {
+      "id": "q23",
+      "construct": "independence",
+      "text_en": "I tend to lose my sense of identity when I am in a relationship.",
+      "text_es": "Tiendo a perder mi sentido de identidad cuando estoy en una relación.",
+      "reverse": true,
+      "source_instrument": "DSI (adapted)",
+      "source_paper": "skowron_schmitt_2003.pdf"
+    },
+    {
+      "id": "q24",
+      "construct": "independence",
+      "text_en": "My mood is heavily influenced by my partner's mood.",
+      "text_es": "Mi estado de ánimo está muy influenciado por el estado de ánimo de mi pareja.",
+      "reverse": true,
+      "source_instrument": "DSI (adapted)",
+      "source_paper": "skowron_schmitt_2003.pdf"
+    },
+    {
+      "id": "q25",
+      "construct": "emotional_security",
+      "text_en": "After a disagreement, my partner and I can reconnect and repair our bond.",
+      "text_es": "Después de un desacuerdo, mi pareja y yo podemos reconectarnos y reparar nuestro vínculo.",
+      "reverse": false,
+      "source_instrument": "SIS Scale (adapted)",
+      "source_paper": "forrest_davies_2008.pdf"
+    }
+  ]
+}

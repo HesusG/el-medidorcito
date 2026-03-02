@@ -10,7 +10,7 @@ import { GoalCard } from "@/components/goals/GoalCard";
 import { HelpModal } from "@/components/ui/HelpModal";
 import { ProfileModal } from "@/components/ui/ProfileModal";
 import { CATEGORIES, CATEGORY_COLORS } from "@/lib/constants";
-import { Plus, BarChart2, Heart, HelpCircle, AlertCircle, Settings } from "lucide-react";
+import { Plus, BarChart2, Heart, HeartPulse, HelpCircle, AlertCircle, Settings } from "lucide-react";
 import Link from "next/link";
 import { cn, getWeekKey } from "@/lib/utils";
 
@@ -166,6 +166,11 @@ export default function DashboardPage() {
                         <Button size="sm" variant="ghost" className="px-2" onClick={() => setIsHelpOpen(true)}>
                             <HelpCircle className="w-5 h-5" />
                         </Button>
+                        <Link href="/test-amor">
+                            <Button size="sm" variant="ghost" className="px-2">
+                                <HeartPulse className="w-5 h-5 text-danger" />
+                            </Button>
+                        </Link>
                         <Link href="/insights">
                             <Button size="sm" variant="ghost" className="px-2">
                                 <BarChart2 className="w-5 h-5" />
@@ -200,6 +205,17 @@ export default function DashboardPage() {
                         <p className="text-xs mt-2 font-medium">Comparte este código con tu pareja para que se una.</p>
                     </div>
                 )}
+
+                {/* Test del Amor Promo */}
+                <Link href="/test-amor">
+                    <div className="bg-pink-200 border-2 border-black p-4 shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer flex items-center gap-3">
+                        <HeartPulse className="w-8 h-8 text-danger shrink-0" />
+                        <div>
+                            <p className="font-black text-sm uppercase">Test del Amor</p>
+                            <p className="text-xs font-medium">Descubre las fortalezas de tu relación con ciencia.</p>
+                        </div>
+                    </div>
+                </Link>
 
                 {goals.length === 0 ? (
                     <div className="text-center py-10">

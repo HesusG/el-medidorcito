@@ -1,0 +1,70 @@
+{
+  "constructs": [
+    {
+      "id": "attachment",
+      "name_en": "Attachment",
+      "name_es": "Apego",
+      "definition": "The degree to which an individual feels secure in the availability and responsiveness of their romantic partner, reflecting internal working models of attachment.",
+      "theory": "Attachment Theory (Bowlby, 1969; Hazan & Shaver, 1987)",
+      "source_instruments": ["ECR-R (Fraley et al., 2000)", "ECR (Brennan, Clark & Shaver, 1998)"],
+      "papers": ["brennan_clark_shaver_1998.pdf", "fraley_et_al_2011.pdf"],
+      "scoring_direction": "higher = more secure attachment",
+      "icon": "Heart"
+    },
+    {
+      "id": "trust",
+      "name_en": "Trust",
+      "name_es": "Confianza",
+      "definition": "The willingness to be vulnerable to one's partner based on positive expectations about their intentions and behavior, encompassing faith, dependability, and predictability.",
+      "theory": "Interpersonal Trust Theory (Rempel, Holmes & Zanna, 1985)",
+      "source_instruments": ["Trust Scale (Rempel, Holmes & Zanna, 1985)"],
+      "papers": ["rempel_holmes_zanna_1985.pdf", "larzelere_huston_1980.pdf"],
+      "scoring_direction": "higher = greater trust",
+      "icon": "Shield"
+    },
+    {
+      "id": "communication",
+      "name_en": "Communication",
+      "name_es": "Comunicación",
+      "definition": "The quality of verbal and nonverbal exchanges between partners, including constructive engagement, withdrawal patterns, and demand-withdraw dynamics.",
+      "theory": "Communication Patterns Theory (Christensen & Heavey, 1990)",
+      "source_instruments": ["CPQ (Christensen & Sullaway, 1984)"],
+      "papers": ["heavey_et_al_1996.pdf", "eldridge_christensen_2002.pdf"],
+      "scoring_direction": "higher = better communication quality",
+      "icon": "MessageCircle"
+    },
+    {
+      "id": "emotional_security",
+      "name_en": "Emotional Security",
+      "name_es": "Seguridad Emocional",
+      "definition": "The degree to which an individual feels safe, stable, and protected within the emotional climate of their relationship, maintaining a sense of safety during conflict.",
+      "theory": "Emotional Security Theory (Davies & Cummings, 1994)",
+      "source_instruments": ["SIS Scale (Davies et al.)"],
+      "papers": ["davies_cummings_1994.pdf", "forrest_davies_2008.pdf"],
+      "scoring_direction": "higher = more emotionally secure",
+      "icon": "ShieldCheck"
+    },
+    {
+      "id": "abandonment",
+      "name_en": "Fear of Abandonment",
+      "name_es": "Miedo al Abandono",
+      "definition": "Anxiety about being rejected, abandoned, or unloved by one's romantic partner, characterized by hypervigilance to signs of rejection and preoccupation with the relationship.",
+      "theory": "Attachment Anxiety (Bowlby, 1969; Brennan, Clark & Shaver, 1998)",
+      "source_instruments": ["ECR Anxiety Subscale", "ECR-S (Wei et al., 2007)"],
+      "papers": ["wei_et_al_2007.pdf", "bowlby_1969.pdf"],
+      "scoring_direction": "higher = less fear (reverse-scored construct)",
+      "icon": "HeartCrack"
+    },
+    {
+      "id": "independence",
+      "name_en": "Independence",
+      "name_es": "Independencia",
+      "definition": "The capacity to maintain a clear sense of self while remaining emotionally connected to one's partner, balancing autonomy with intimacy.",
+      "theory": "Differentiation of Self (Bowen, 1978; Skowron & Friedlander, 1998)",
+      "source_instruments": ["DSI (Skowron & Friedlander, 1998)"],
+      "papers": ["skowron_schmitt_2003.pdf", "bowen_1978.pdf"],
+      "scoring_direction": "higher = healthier independence",
+      "icon": "User"
+    }
+  ]
+}
