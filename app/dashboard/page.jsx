@@ -10,12 +10,12 @@ import { GoalCard } from "@/components/goals/GoalCard";
 import { HelpModal } from "@/components/ui/HelpModal";
 import { ProfileModal } from "@/components/ui/ProfileModal";
 import { CATEGORIES, CATEGORY_COLORS } from "@/lib/constants";
-import { Plus, BarChart2, Heart, HeartPulse, HelpCircle, AlertCircle, Settings } from "lucide-react";
+import { Plus, BarChart2, Heart, HeartPulse, HelpCircle, AlertCircle, Settings, Shield } from "lucide-react";
 import Link from "next/link";
 import { cn, getWeekKey } from "@/lib/utils";
 
 export default function DashboardPage() {
-    const { user, loading } = useAuth();
+    const { user, loading, isAdmin } = useAuth();
     const router = useRouter();
     const [goals, setGoals] = useState([]);
     const [isLoadingData, setIsLoadingData] = useState(true);
@@ -160,6 +160,13 @@ export default function DashboardPage() {
                         <h1 className="text-xl font-black uppercase tracking-tighter">El Medidorcito</h1>
                     </div>
                     <div className="flex gap-2">
+                        {isAdmin && (
+                            <Link href="/admin">
+                                <Button size="sm" variant="ghost" className="px-2">
+                                    <Shield className="w-5 h-5 text-purple-600" />
+                                </Button>
+                            </Link>
+                        )}
                         <Button size="sm" variant="ghost" className="px-2" onClick={() => setIsProfileOpen(true)}>
                             <Settings className="w-5 h-5" />
                         </Button>
