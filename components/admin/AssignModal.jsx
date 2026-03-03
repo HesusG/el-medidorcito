@@ -1,13 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { AlertCircle } from "lucide-react";
 
 export function AssignModal({ user, couples, onConfirm, onClose }) {
-    const [targetId, setTargetId] = useState("");
+    const [targetId, setTargetId] = useState(user?._preselectedCoupleId || "");
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        setTargetId(user?._preselectedCoupleId || "");
+    }, [user]);
 
     if (!user) return null;
 
