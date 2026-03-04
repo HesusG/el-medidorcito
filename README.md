@@ -3,7 +3,7 @@
 Una aplicación web moderna para parejas diseñada para fortalecer la relación mediante el seguimiento de metas compartidas, tácticas personalizadas y check-ins semanales. Inspirada en la metodología de "Balanced Scorecard", pero adaptada para el crecimiento personal y de pareja.
 
 ![Estilo UI](https://img.shields.io/badge/UI-Neo--Brutalist-pink)
-![Tech Stack](https://img.shields.io/badge/Stack-Next.js%2014%20%7C%20Firebase%20%7C%20Tailwind-blue)
+![Tech Stack](https://img.shields.io/badge/Stack-Next.js%2016%20%7C%20Firebase%20%7C%20Tailwind-blue)
 
 ## ✨ Características Principales
 
@@ -46,6 +46,31 @@ npm run dev
 
 Abre [http://localhost:3000](http://localhost:3000) para ver el resultado.
 
+### 4. Despliegue (Firebase Hosting + SSR)
+
+La app se despliega con **Firebase Hosting** usando Cloud Functions para SSR.
+
+**Requisitos:**
+```bash
+# Instalar Firebase CLI (si no lo tienes)
+npm i -g firebase-tools
+
+# Iniciar sesión
+firebase login
+```
+
+**Comandos de despliegue:**
+```bash
+# Despliegue completo (hosting + Firestore rules)
+firebase deploy
+
+# Solo hosting
+firebase deploy --only hosting
+
+# Solo reglas de Firestore
+firebase deploy --only firestore
+```
+
 ## 🛠️ Flujo de Usuario
 
 1. **Crear Cuenta**: Regístrate con tu correo electrónico.
@@ -58,7 +83,7 @@ Abre [http://localhost:3000](http://localhost:3000) para ver el resultado.
 
 ## 📱 Tecnologías Utilizadas
 
-- **Frontend**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Frontend**: [Next.js 16](https://nextjs.org/) (App Router)
 - **Estilo**: [Tailwind CSS](https://tailwindcss.com/)
 - **Base de Datos & Auth**: [Firebase](https://firebase.google.com/)
 - **Gráficos**: [Recharts](https://recharts.org/)

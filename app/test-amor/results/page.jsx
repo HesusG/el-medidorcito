@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useAuth } from "@/services/auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import { db } from "@/services/firebase";
@@ -16,6 +16,18 @@ import { ArrowLeft, HeartPulse, Star, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 
 export default function ResultsPage() {
+    return (
+        <Suspense fallback={
+            <div className="flex justify-center items-center h-screen bg-gray-50">
+                <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" />
+            </div>
+        }>
+            <ResultsContent />
+        </Suspense>
+    );
+}
+
+function ResultsContent() {
     const { user, loading } = useAuth();
     const router = useRouter();
     const searchParams = useSearchParams();

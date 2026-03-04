@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useAuth } from "@/services/auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
@@ -12,6 +12,18 @@ import { ArrowLeft, ArrowRight, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function TakeTestPage() {
+    return (
+        <Suspense fallback={
+            <div className="flex justify-center items-center h-screen bg-gray-50">
+                <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" />
+            </div>
+        }>
+            <TakeTestContent />
+        </Suspense>
+    );
+}
+
+function TakeTestContent() {
     const { user, loading } = useAuth();
     const router = useRouter();
     const searchParams = useSearchParams();
