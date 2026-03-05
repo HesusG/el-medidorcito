@@ -12,7 +12,7 @@ import {
     limit,
     serverTimestamp,
 } from "firebase/firestore";
-import { calculateDimensionScores } from "@/lib/loveTestScoring";
+import { calculateDimensionScores, calculatePatternScores, calculateDominantStyle } from "@/lib/loveTestScoring";
 
 const COLLECTION = "loveTests";
 
@@ -28,50 +28,56 @@ export async function createLoveTest(coupleId, userId) {
         createdBy: userId,
         createdAt: serverTimestamp(),
         status: "pending",
-        version: 1,
+        version: 2,
         responses: {},
     });
     return docRef.id;
 }
 
 /**
- * Submit a user's test response.
+ * Submit a user's test response (v2 — Likert + Scenarios).
  * @param {string} testId
  * @param {string} userId
- * @param {Object} answers - { q01: 4, q02: 2, ... }
+ * @param {Object} likertAnswers - { q01: 4, q02: 2, ... }
+ * @param {Object} scenarioAnswers - { s01: "secure", s02: "anxious", ... }
  */
-export async function submitTestResponse(testId, userId, answers) {
+export async function submitTestResponse(testId, userId, likertAnswers, scenarioAnswers) {
     const testRef = doc(db, COLLECTION, testId);
     const testSnap = await getDoc(testRef);
 
     if (!testSnap.exists()) throw new Error("Test not found");
 
     const testData = testSnap.data();
-    const dimensionScores = calculateDimensionScores(answers);
+    const dimensionScores = calculateDimensionScores(likertAnswers);
+    const patternScores = calculatePatternScores(scenarioAnswers);
+    const { dominant, breakdown } = calculateDominantStyle(scenarioAnswers);
 
     const updatedResponses = {
         ...testData.responses,
         [userId]: {
-            answers,
+            likertAnswers,
             dimensionScores,
+            scenarioAnswers,
+            patternScores,
+            dominantStyle: dominant,
+            styleBreakdown: breakdown,
             completedAt: new Date().toISOString(),
         },
     };
 
-    // Check if both partners have responded
     const responseCount = Object.keys(updatedResponses).length;
-    const newStatus = responseCount >= 2 ? "complete" : "pending";
+    const newStatus = responseCount >= 2 ? "complete" : "partial";
 
     await updateDoc(testRef, {
         responses: updatedResponses,
         status: newStatus,
     });
 
-    return { dimensionScores, status: newStatus };
+    return { dimensionScores, patternScores, dominantStyle: dominant, styleBreakdown: breakdown, status: newStatus };
 }
 
 /**
- * Get the latest love test for a couple.
+ * Get the latest v2 love test for a couple.
  * @param {string} coupleId
  * @returns {Object|null} test data with id
  */
@@ -79,6 +85,7 @@ export async function getLatestLoveTest(coupleId) {
     const q = query(
         collection(db, COLLECTION),
         where("coupleId", "==", coupleId),
+        where("version", "==", 2),
         orderBy("createdAt", "desc"),
         limit(1)
     );

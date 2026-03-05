@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test del Amor — El Medidorcito</title>
+<meta name="description" content="Descubre tu estilo de relación con 45 preguntas basadas en investigación psicológica.">
+<meta property="og:title" content="Test del Amor — El Medidorcito">
+<meta property="og:description" content="45 preguntas para descubrir tu estilo de relación. ¿Eres seguro, ansioso, evitativo o reactivo?">
+<meta property="og:type" content="website">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#FFD600;--danger:#FF005C;--black:#000;--white:#FFF;--shadow:4px 4px 0px 0px #000;--shadow-sm:2px 2px 0px 0px #000}
+body{font-family:system-ui,-apple-system,sans-serif;background:#F9FAFB;color:#000;min-height:100vh}
+.container{max-width:480px;margin:0 auto;padding:16px}
+
+/* Cards */
+.card{background:var(--white);border:2px solid var(--black);box-shadow:var(--shadow);padding:24px;margin-bottom:16px}
+.card-pink{background:#FCE7F3}.card-green{background:#DCFCE7}.card-red{background:#FEE2E2}
+.card-yellow{background:#FEF9C3}.card-blue{background:#DBEAFE}.card-purple{background:#F3E8FF}
+.card-indigo{background:#E0E7FF}.card-orange{background:#FFEDD5}.card-cyan{background:#CFFAFE}
+.card-amber{background:#FEF3C7}.card-rose{background:#FFE4E6}
+
+/* Buttons */
+.btn{font-weight:700;border:2px solid var(--black);box-shadow:var(--shadow);padding:10px 24px;cursor:pointer;transition:all .1s;font-size:16px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn:active{transform:translate(2px,2px);box-shadow:none}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-primary{background:var(--primary);color:var(--black)}
+.btn-primary:hover{background:#FACC15}
+.btn-outline{background:var(--white);color:var(--black)}
+.btn-outline:hover{background:#F3F4F6}
+.btn-row{display:flex;gap:12px}
+.btn-row .btn{flex:1}
+
+/* Typography */
+h1{font-size:24px;font-weight:900;text-transform:uppercase;letter-spacing:-1px}
+h2{font-size:20px;font-weight:900;text-transform:uppercase}
+h3{font-size:16px;font-weight:900;text-transform:uppercase}
+.subtitle{font-size:14px;color:#374151;font-weight:500}
+.text-xs{font-size:12px}.text-sm{font-size:14px}
+.text-center{text-align:center}
+.font-bold{font-weight:700}
+.uppercase{text-transform:uppercase}
+.mt-2{margin-top:8px}.mt-3{margin-top:12px}.mt-4{margin-top:16px}.mb-2{margin-bottom:8px}.mb-3{margin-bottom:12px}.mb-4{margin-bottom:16px}
+.space-y>*+*{margin-top:16px}
+
+/* Header */
+.header{background:var(--white);border-bottom:2px solid var(--black);padding:16px;position:sticky;top:0;z-index:10;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.header-inner{max-width:480px;margin:0 auto}
+.header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+
+/* Progress bar */
+.progress{height:12px;background:var(--white);border:2px solid var(--black)}
+.progress-fill{height:100%;background:var(--primary);transition:width .3s}
+
+/* Options */
+.option-btn{width:100%;text-align:left;padding:12px 16px;border:2px solid var(--black);font-weight:700;transition:all .1s;cursor:pointer;display:flex;align-items:flex-start;gap:12px;margin-bottom:8px;background:var(--white);box-shadow:var(--shadow)}
+.option-btn:hover{background:#F9FAFB}
+.option-btn:active{transform:translate(2px,2px);box-shadow:none}
+.option-btn.selected{background:var(--primary);box-shadow:var(--shadow-sm);transform:translate(-2px,-2px)}
+.option-letter{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:2px solid var(--black);font-weight:900;font-size:14px;flex-shrink:0;background:var(--white)}
+.option-btn.selected .option-letter{background:var(--black);color:var(--white)}
+.option-text{font-size:14px;padding-top:4px}
+
+/* Group header */
+.group-header{padding:12px;border:2px solid var(--black);box-shadow:var(--shadow)}
+.group-header-top{display:flex;justify-content:space-between;align-items:center}
+.group-badge{font-size:12px;font-weight:700;background:var(--white);border:2px solid var(--black);padding:2px 8px}
+.phase-badge{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;background:var(--black);color:var(--white);padding:2px 8px;text-transform:uppercase}
+
+/* Score bar */
+.score-bar-wrap{margin-bottom:8px}
+.score-bar-label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:4px}
+.score-bar{height:16px;background:var(--white);border:2px solid var(--black)}
+.score-bar-fill{height:100%;transition:width .5s}
+.fill-green{background:#4ADE80}.fill-blue{background:#60A5FA}.fill-yellow{background:#FACC15}.fill-red{background:#F87171}.fill-gray{background:#9CA3AF}
+
+/* Badge */
+.badge{display:inline-block;padding:2px 8px;font-size:12px;font-weight:700;border:2px solid var(--black)}
+.badge-green{background:#BBF7D0}.badge-blue{background:#BFDBFE}.badge-yellow{background:#FEF08A}.badge-red{background:#FECACA}
+
+/* Feedback */
+.feedback-item{display:flex;gap:8px;font-size:14px;margin-bottom:8px}
+.feedback-item span:first-child{flex-shrink:0}
+.feedback-item .italic{font-style:italic;color:#6B7280}
+
+/* Style breakdown */
+.style-bar{margin-bottom:6px}
+.style-label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:2px}
+.style-track{height:12px;background:var(--white);border:2px solid var(--black)}
+.style-fill{height:100%;transition:width .5s}
+
+/* Tabs */
+.tabs{display:flex;border:2px solid var(--black);box-shadow:var(--shadow);margin-bottom:16px}
+.tab{flex:1;padding:12px;font-weight:700;font-size:14px;text-transform:uppercase;text-align:center;cursor:pointer;border:none;transition:background .15s}
+.tab:first-child{border-right:2px solid var(--black)}
+.tab.active{background:var(--primary);color:var(--black)}
+.tab:not(.active){background:var(--white);color:#9CA3AF}
+
+/* Grid */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid-item{padding:12px;border:2px solid var(--black);font-weight:700;font-size:12px;text-transform:uppercase}
+
+/* Introspection */
+.intro-prompt{display:flex;gap:8px;font-size:14px;color:#6B7280;margin-bottom:4px}
+.intro-dot{color:#A855F7;flex-shrink:0}
+
+/* Transition */
+.transition-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+
+/* Couple input */
+.couple-input-section{margin-top:16px}
+.couple-input-section label{font-weight:700;font-size:14px;display:block;margin-bottom:8px}
+.couple-input{width:100%;padding:12px;border:2px solid var(--black);font-size:16px;font-weight:700;font-family:monospace;text-align:center;margin-bottom:12px}
+
+/* Share section */
+.share-code{font-size:28px;font-weight:900;letter-spacing:4px;background:var(--white);border:2px solid var(--black);padding:8px 16px;display:inline-block;cursor:pointer;user-select:all}
+.share-hint{font-size:12px;color:#6B7280;margin-top:8px}
+
+/* Hidden */
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+// ==================== DATA ====================
+
+const DIMENSIONS = [
+    { id:"emotional_security", name:"Seguridad Emocional", color:"card-blue", desc:"Qué tan seguro/a te sientes emocionalmente en tu relación." },
+    { id:"trust", name:"Confianza", color:"card-green", desc:"Tu nivel de confianza en las intenciones y acciones de tu pareja." },
+    { id:"communication", name:"Comunicación", color:"card-yellow", desc:"La calidad del diálogo y manejo de conflictos entre ustedes." },
+    { id:"attachment", name:"Apego", color:"card-pink", desc:"Qué tan seguro/a te sientes en la disponibilidad de tu pareja." },
+    { id:"abandonment", name:"Miedo al Abandono", color:"card-red", desc:"Tu nivel de tranquilidad respecto a la estabilidad de la relación." },
+    { id:"independence", name:"Independencia", color:"card-purple", desc:"Tu capacidad de mantener tu identidad dentro de la relación." },
+];
+
+const QUESTIONS = [
+    {id:"q01",construct:"emotional_security",text:"Me siento seguro/a expresando mis emociones más profundas con mi pareja.",reverse:false},
+    {id:"q02",construct:"emotional_security",text:"Cuando no estamos de acuerdo, aún me siento emocionalmente seguro/a en nuestra relación.",reverse:false},
+    {id:"q03",construct:"emotional_security",text:"Me preocupa que los conflictos puedan dañar seriamente nuestra relación.",reverse:true},
+    {id:"q04",construct:"emotional_security",text:"Las reacciones emocionales de mi pareja me parecen impredecibles.",reverse:true},
+    {id:"q25",construct:"emotional_security",text:"Después de un desacuerdo, mi pareja y yo podemos reconectarnos y reparar nuestro vínculo.",reverse:false},
+    {id:"q05",construct:"trust",text:"Puedo contar con que mi pareja cumplirá sus promesas.",reverse:false},
+    {id:"q06",construct:"trust",text:"Confío en que mi pareja es honesta conmigo, incluso sobre cosas difíciles.",reverse:false},
+    {id:"q07",construct:"trust",text:"Creo que mi pareja tiene mis mejores intereses en mente.",reverse:false},
+    {id:"q08",construct:"trust",text:"A veces me pregunto si mi pareja está siendo completamente sincera conmigo.",reverse:true},
+    {id:"q09",construct:"communication",text:"Mi pareja y yo podemos discutir nuestros problemas con calma y respeto.",reverse:false},
+    {id:"q10",construct:"communication",text:"Me siento escuchado/a y comprendido/a cuando comparto mis sentimientos con mi pareja.",reverse:false},
+    {id:"q11",construct:"communication",text:"Durante las discusiones, uno de nosotros tiende a retirarse o cerrarse.",reverse:true},
+    {id:"q12",construct:"communication",text:"Evitamos hablar sobre temas que podrían causar conflicto.",reverse:true},
+    {id:"q13",construct:"attachment",text:"Me siento cómodo/a dependiendo de mi pareja cuando necesito apoyo.",reverse:false},
+    {id:"q14",construct:"attachment",text:"Sé que mi pareja estará ahí para mí cuando la necesite.",reverse:false},
+    {id:"q15",construct:"attachment",text:"Me resulta difícil permitirme depender completamente de mi pareja.",reverse:true},
+    {id:"q16",construct:"attachment",text:"Prefiero no mostrarle a mi pareja cómo me siento en el fondo.",reverse:true},
+    {id:"q17",construct:"abandonment",text:"Rara vez me preocupa que mi pareja quiera dejarme.",reverse:false},
+    {id:"q18",construct:"abandonment",text:"A menudo necesito que mi pareja me asegure que realmente me ama.",reverse:true},
+    {id:"q19",construct:"abandonment",text:"Tengo miedo de que mi pareja pierda interés en mí con el tiempo.",reverse:true},
+    {id:"q20",construct:"abandonment",text:"Cuando mi pareja no está, me siento seguro/a sobre nuestra relación.",reverse:false},
+    {id:"q21",construct:"independence",text:"Mantengo mis propios intereses y amistades fuera de nuestra relación.",reverse:false},
+    {id:"q22",construct:"independence",text:"Puedo estar en desacuerdo con mi pareja sin sentir que amenaza nuestro vínculo.",reverse:false},
+    {id:"q23",construct:"independence",text:"Tiendo a perder mi sentido de identidad cuando estoy en una relación.",reverse:true},
+    {id:"q24",construct:"independence",text:"Mi estado de ánimo está muy influenciado por el estado de ánimo de mi pareja.",reverse:true},
+];
+
+const LIKERT_OPTIONS = [
+    {value:1,label:"Muy en desacuerdo"},{value:2,label:"En desacuerdo"},{value:3,label:"Neutral"},{value:4,label:"De acuerdo"},{value:5,label:"Muy de acuerdo"},
+];
+
+const SCENARIO_PATTERNS = [
+    {id:"mind_reading",name:"Lectura de Mente",color:"card-indigo",desc:"Tendencia a asumir lo que tu pareja piensa o siente sin verificarlo."},
+    {id:"personalization",name:"Personalización",color:"card-orange",desc:"Tendencia a tomar las acciones de tu pareja como algo personal."},
+    {id:"reassurance_seeking",name:"Búsqueda de Validación",color:"card-cyan",desc:"Necesidad de confirmación constante sobre la relación."},
+    {id:"catastrophizing",name:"Catastrofización",color:"card-amber",desc:"Tendencia a imaginar el peor escenario ante cambios pequeños."},
+    {id:"emotional_sensitivity",name:"Sensibilidad Emocional",color:"card-rose",desc:"Reactividad intensa ante palabras, tonos o acciones de tu pareja."},
+];
+
+const RESPONSE_STYLES = {
+    secure:{name:"Seguro",desc:"Respuestas equilibradas, comunicativas y empáticas.",color:"fill-green"},
+    anxious:{name:"Ansioso",desc:"Búsqueda de validación, inseguridad, necesidad de cercanía.",color:"fill-blue"},
+    avoidant:{name:"Evitativo",desc:"Retirarse, cerrarse, buscar distancia emocional.",color:"fill-gray"},
+    reactive:{name:"Reactivo",desc:"Respuestas intensas, pasivo-agresivas o escaladoras.",color:"fill-red"},
+};
+
+const SCENARIOS = [
+    {id:"s01",pattern:"mind_reading",text:"Llegas a casa y tu pareja apenas te saluda. Parece distraída con su teléfono.",options:[
+        {label:"Le pregunto cómo estuvo su día y si todo está bien",style:"secure",score:4},
+        {label:"Pienso que seguro está enojada conmigo por algo",style:"anxious",score:1},
+        {label:"Agarro mi teléfono también y no digo nada",style:"avoidant",score:2},
+        {label:"Le digo con ironía 'Qué bonito recibimiento'",style:"reactive",score:1.5},
+    ]},
+    {id:"s02",pattern:"mind_reading",text:"Tu pareja suspira profundamente mientras revisa su teléfono. No te ha dicho nada.",options:[
+        {label:"Le pregunto '¿pasó algo?' con calma",style:"secure",score:4},
+        {label:"Asumo que está molesta conmigo y empiezo a repasar qué pude haber hecho",style:"anxious",score:1},
+        {label:"Lo ignoro, si quiere decirme algo lo hará",style:"avoidant",score:2},
+        {label:"Le digo '¿Y ahora qué te pasa?' en tono cansado",style:"reactive",score:1.5},
+    ]},
+    {id:"s03",pattern:"mind_reading",text:"Tu pareja está más callada de lo normal durante la cena.",options:[
+        {label:"Le pregunto directamente si hay algo que la preocupe",style:"secure",score:4},
+        {label:"Empiezo a pensar que hice algo malo y me pongo nervioso/a",style:"anxious",score:1},
+        {label:"Sigo comiendo normal, cada quien tiene sus momentos",style:"avoidant",score:2},
+        {label:"Le digo '¿Me vas a ignorar toda la noche?'",style:"reactive",score:1.5},
+    ]},
+    {id:"s04",pattern:"mind_reading",text:"Le mandas un meme a tu pareja y solo responde con un 'jaja'. Normalmente responde con más entusiasmo.",options:[
+        {label:"Pienso que tal vez está ocupada y no le doy más vueltas",style:"secure",score:4},
+        {label:"Me pregunto si le caí mal o si la aburrí",style:"anxious",score:1},
+        {label:"Dejo de mandar memes por un rato",style:"avoidant",score:2},
+        {label:"Le escribo '¿Ya ni te causan gracia mis cosas?'",style:"reactive",score:1.5},
+    ]},
+    {id:"s05",pattern:"personalization",text:"Tu pareja llega de mal humor del trabajo y responde cortante a una pregunta tuya.",options:[
+        {label:"Entiendo que tuvo un mal día y le doy un momento para descomprimirse",style:"secure",score:4},
+        {label:"Siento que la tomó conmigo y me pregunto qué hice",style:"anxious",score:1},
+        {label:"Me voy a otro cuarto para no lidiar con su humor",style:"avoidant",score:2},
+        {label:"Le digo '¿Y yo qué te hice? No soy tu saco de boxeo'",style:"reactive",score:1.5},
+    ]},
+    {id:"s06",pattern:"personalization",text:"Tu pareja publica una historia en redes pero no le da like a tu última foto.",options:[
+        {label:"No le doy importancia, seguramente no la vio",style:"secure",score:4},
+        {label:"Me siento ignorado/a y reviso si le dio like a otras personas",style:"anxious",score:1},
+        {label:"Decido no darle like a sus cosas tampoco",style:"avoidant",score:2},
+        {label:"Le mando un mensaje tipo '¿Ya no te gustan mis fotos o qué?'",style:"reactive",score:1.5},
+    ]},
+    {id:"s07",pattern:"personalization",text:"Tu pareja le cuenta a un amigo algo importante antes de contártelo a ti.",options:[
+        {label:"Entiendo que a veces necesita otros puntos de vista y no significa que me excluya",style:"secure",score:4},
+        {label:"Me siento herido/a porque debería ser la primera persona en enterarme",style:"anxious",score:1},
+        {label:"No digo nada pero internamente me distancio un poco",style:"avoidant",score:2},
+        {label:"Le reclamo '¿Por qué tu amigo se entera antes que yo?'",style:"reactive",score:1.5},
+    ]},
+    {id:"s08",pattern:"personalization",text:"Tu pareja dice que necesita un fin de semana para ella/él solo/a.",options:[
+        {label:"Me parece sano, yo también aprovecho para hacer mis cosas",style:"secure",score:4},
+        {label:"Me pregunto si ya se cansó de mí o si quiere estar con alguien más",style:"anxious",score:1},
+        {label:"Digo que está bien aunque por dentro me molesta un poco",style:"avoidant",score:2},
+        {label:"Le digo '¿O sea que te estorbo?'",style:"reactive",score:1.5},
+    ]},
+    {id:"s09",pattern:"reassurance_seeking",text:"Tu pareja no te dice 'te amo' al despedirse como usualmente hace.",options:[
+        {label:"No le doy importancia, sé que me quiere aunque no lo diga siempre",style:"secure",score:4},
+        {label:"Le mando un mensaje preguntando '¿está todo bien entre nosotros?'",style:"anxious",score:1},
+        {label:"Yo tampoco lo digo la próxima vez",style:"avoidant",score:2},
+        {label:"Le digo '¿Ya no me quieres o qué?' medio en broma medio en serio",style:"reactive",score:1.5},
+    ]},
+    {id:"s10",pattern:"reassurance_seeking",text:"Ves que tu pareja comenta con un emoji de corazón la foto de alguien atractivo/a.",options:[
+        {label:"No me preocupa, un emoji no significa nada y confío en nuestra relación",style:"secure",score:4},
+        {label:"Le pregunto quién es esa persona y si le parece atractiva",style:"anxious",score:1},
+        {label:"Lo noto pero no digo nada para no parecer celoso/a",style:"avoidant",score:2},
+        {label:"Comento la foto de alguien atractivo/a también para ver su reacción",style:"reactive",score:1.5},
+    ]},
+    {id:"s11",pattern:"reassurance_seeking",text:"Llevan unos días sin tener una conversación profunda. Solo cosas logísticas.",options:[
+        {label:"Propongo una noche sin distracciones para reconectarnos",style:"secure",score:4},
+        {label:"Le pregunto si sigue sintiendo lo mismo por mí",style:"anxious",score:1},
+        {label:"No digo nada, las relaciones tienen ciclos",style:"avoidant",score:2},
+        {label:"Le digo '¿Ya somos roommates o qué?'",style:"reactive",score:1.5},
+    ]},
+    {id:"s12",pattern:"reassurance_seeking",text:"Tu pareja va a una fiesta sin ti y no te escribe en toda la noche.",options:[
+        {label:"Confío en que se está divirtiendo y me contará mañana",style:"secure",score:4},
+        {label:"Le mando varios mensajes para saber cómo está y con quién anda",style:"anxious",score:1},
+        {label:"Finjo que no me importa aunque estoy pendiente del teléfono",style:"avoidant",score:2},
+        {label:"Cuando llega le digo '¿Tan difícil era mandar un mensaje?'",style:"reactive",score:1.5},
+    ]},
+    {id:"s13",pattern:"catastrophizing",text:"Tu pareja cancela una cena porque le surgió algo del trabajo.",options:[
+        {label:"Propongo reagendar y le deseo éxito con lo del trabajo",style:"secure",score:4},
+        {label:"Siento que el trabajo siempre será más importante que yo",style:"anxious",score:1},
+        {label:"Digo que está bien pero no propongo otra fecha",style:"avoidant",score:2},
+        {label:"Le digo 'Nunca soy tu prioridad'",style:"reactive",score:1.5},
+    ]},
+    {id:"s14",pattern:"catastrophizing",text:"Tu pareja menciona que una compañera de trabajo es 'muy divertida'.",options:[
+        {label:"Me da gusto que tenga buena relación con sus colegas",style:"secure",score:4},
+        {label:"Empiezo a preocuparme de que le guste esa persona",style:"anxious",score:1},
+        {label:"Cambio de tema sin mostrar lo que sentí",style:"avoidant",score:2},
+        {label:"Le digo '¿Y yo no soy divertida/o?' con tono ácido",style:"reactive",score:1.5},
+    ]},
+    {id:"s15",pattern:"catastrophizing",text:"Tu pareja te dice que necesita 'hablar de algo' pero no puede ahora, que luego.",options:[
+        {label:"Le digo que cuando esté lista/o la escucho con gusto",style:"secure",score:4},
+        {label:"Paso las siguientes horas imaginando que me va a dejar",style:"anxious",score:1},
+        {label:"Digo 'ok' y trato de no pensar en ello",style:"avoidant",score:2},
+        {label:"Le digo 'Dime ahorita, no me dejes así'",style:"reactive",score:1.5},
+    ]},
+    {id:"s16",pattern:"catastrophizing",text:"Notas que tu pareja cambió su foto de perfil y ya no apareces tú en ella.",options:[
+        {label:"Es solo una foto, no cambia lo que somos",style:"secure",score:4},
+        {label:"Siento que es una señal de que se está alejando de mí",style:"anxious",score:1},
+        {label:"Cambio la mía también sin decir nada",style:"avoidant",score:2},
+        {label:"Le pregunto molesto/a '¿Ya me borraste de tu vida?'",style:"reactive",score:1.5},
+    ]},
+    {id:"s17",pattern:"emotional_sensitivity",text:"Tu pareja te dice en tono directo: 'No me gustó lo que dijiste en la cena con mis amigos'.",options:[
+        {label:"Le pregunto qué específicamente le molestó para entender y no repetirlo",style:"secure",score:4},
+        {label:"Me siento atacado/a y me cierro emocionalmente",style:"anxious",score:1},
+        {label:"Le digo 'Ok' y me quedo en silencio el resto de la noche",style:"avoidant",score:2},
+        {label:"Le contesto '¿Y lo que tú dices siempre está perfecto?'",style:"reactive",score:1.5},
+    ]},
+    {id:"s18",pattern:"emotional_sensitivity",text:"Tu pareja hace un chiste sobre algo que a ti te importa mucho.",options:[
+        {label:"Le digo con calma que eso me importa y prefiero que no bromee con ello",style:"secure",score:4},
+        {label:"Me quedo callado/a pero me siento herido/a por dentro",style:"anxious",score:1},
+        {label:"Finjo que me río para no hacer un drama",style:"avoidant",score:2},
+        {label:"Le contesto con otro chiste hiriente para que sienta lo mismo",style:"reactive",score:1.5},
+    ]},
+    {id:"s19",pattern:"emotional_sensitivity",text:"Durante una discusión, tu pareja sube el tono de voz sin darse cuenta.",options:[
+        {label:"Le pido que bajemos el tono para poder escucharnos mejor",style:"secure",score:4},
+        {label:"Me paralizo y siento que la situación se salió de control",style:"anxious",score:1},
+        {label:"Me callo y espero a que se calme, aunque me afecte",style:"avoidant",score:2},
+        {label:"Subo mi tono también: si grita, yo grito",style:"reactive",score:1.5},
+    ]},
+    {id:"s20",pattern:"emotional_sensitivity",text:"Tu pareja te dice que algo que cocinaste 'no le quedó tan bien como la vez pasada'.",options:[
+        {label:"Le pregunto qué le gustaría diferente para la próxima",style:"secure",score:4},
+        {label:"Siento que nada de lo que hago es suficiente",style:"anxious",score:1},
+        {label:"Digo 'Ok' y decido no cocinar en un buen rato",style:"avoidant",score:2},
+        {label:"Le digo 'Pues cocina tú la próxima vez'",style:"reactive",score:1.5},
+    ]},
+];
+
+// Feedback data
+const DIM_FEEDBACK = {
+    emotional_security:{high:{positive:"Tienes una gran capacidad para sentirte seguro/a emocionalmente, incluso en momentos difíciles.",watchFor:"A veces la comodidad puede hacer que demos por sentado lo que sentimos.",reflect:"¿Qué hace tu pareja que más te ayuda a sentirte emocionalmente seguro/a?"},medium:{positive:"Hay una base de seguridad emocional en tu relación que vale la pena reconocer y cuidar.",watchFor:"Los momentos de inseguridad no significan que algo esté mal — son oportunidades para comunicar lo que necesitas.",reflect:"¿En qué situaciones sientes que tu seguridad emocional se tambalea?"},low:{positive:"El hecho de que reconozcas esta área ya es un paso importante.",watchFor:"La inseguridad emocional prolongada puede llevarte a interpretar las acciones de tu pareja de forma negativa.",reflect:"¿Qué necesitarías de tu pareja para sentirte más seguro/a emocionalmente?"}},
+    trust:{high:{positive:"La confianza que sientes es un pilar fundamental de tu relación.",watchFor:"La confianza ciega no es lo mismo que la confianza sana. Sigue comunicándote.",reflect:"¿Hay algún tema que evites mencionar por miedo a romper esa confianza?"},medium:{positive:"Tienes una confianza razonable, lo cual es una base sólida.",watchFor:"Las pequeñas dudas no atendidas pueden crecer. Es mejor hablar de ellas.",reflect:"¿Qué te ayudaría a confiar un poco más?"},low:{positive:"Reconocer que la confianza es un reto muestra valentía.",watchFor:"La desconfianza puede volverse profecía autocumplida.",reflect:"¿Esta desconfianza viene de experiencias pasadas o de algo específico?"}},
+    communication:{high:{positive:"Tienen una comunicación que muchas parejas envidiarían.",watchFor:"Comunicarse bien no significa evitar temas difíciles.",reflect:"¿Hay algún tema que aunque se comuniquen bien, sigan evitando?"},medium:{positive:"Su comunicación tiene buenos momentos. Identificar cuándo funciona mejor puede ayudarles.",watchFor:"Retirarse durante un conflicto es señal de que alguien se siente abrumado/a.",reflect:"¿Cuándo fue la última vez que una conversación difícil terminó bien?"},low:{positive:"Querer mejorar la comunicación es el primer paso.",watchFor:"Evitar los conflictos no los resuelve — los acumula.",reflect:"¿Qué pasaría si le dijeras a tu pareja exactamente cómo te sientes?"}},
+    attachment:{high:{positive:"Te sientes cómodo/a dependiendo de tu pareja. Eso refleja un apego seguro.",watchFor:"Depender sanamente no es lo mismo que necesitar.",reflect:"¿Qué tan fácil te resulta pedir ayuda a tu pareja vs. a otras personas?"},medium:{positive:"Hay una buena base de conexión. A veces cuesta abrirse del todo.",watchFor:"Si te cuesta mostrar vulnerabilidad, probablemente es un mecanismo de protección.",reflect:"¿Qué es lo que más te cuesta compartir emocionalmente?"},low:{positive:"Tu independencia emocional puede ser una fortaleza.",watchFor:"Mantener distancia emocional puede hacer que tu pareja se sienta excluida.",reflect:"¿Hay algo que te impida dejarte apoyar completamente?"}},
+    abandonment:{high:{positive:"Te sientes tranquilo/a respecto a la estabilidad de tu relación.",watchFor:"A veces la seguridad total puede hacer que bajemos la guardia en el cuidado activo.",reflect:"¿Cómo demuestras que no das por sentada la presencia de tu pareja?"},medium:{positive:"Es normal tener momentos de inseguridad. Lo importante es cómo los manejas.",watchFor:"Necesitar reafirmación de vez en cuando es humano.",reflect:"¿En qué momentos específicos sientes más miedo de perder a tu pareja?"},low:{positive:"El miedo al abandono probablemente significa que esta relación es muy importante para ti.",watchFor:"El miedo intenso puede llevarte a comportamientos que paradójicamente alejan a tu pareja.",reflect:"¿Puedes identificar si este miedo es sobre tu pareja actual o sobre experiencias anteriores?"}},
+    independence:{high:{positive:"Mantienes tu identidad dentro de la relación. Eso es señal de madurez emocional.",watchFor:"Ser independiente es valioso, pero que tu pareja no lo perciba como distanciamiento.",reflect:"¿Tu pareja sabe lo importante que es para ti mantener tu individualidad?"},medium:{positive:"Estás encontrando un balance entre ser tú y ser parte de un 'nosotros'.",watchFor:"Si tu estado de ánimo depende mucho del de tu pareja, podrías necesitar más espacios propios.",reflect:"¿Tienes actividades o relaciones que son solo tuyas y que te recargan?"},low:{positive:"Entregarte a la relación muestra compromiso. Pero cuidar de ti no es egoísmo.",watchFor:"Perder tu identidad puede generar resentimiento a largo plazo.",reflect:"¿Qué hacías antes de esta relación que te hacía feliz y has dejado de hacer?"}},
+};
+
+const PAT_FEEDBACK = {
+    mind_reading:{high:{positive:"Tiendes a verificar antes de asumir. Eso evita muchos malentendidos.",watchFor:"Incluso con buenas intenciones, a veces podemos asumir.",reflect:"¿Recuerdas alguna vez que asumiste algo y resultó ser diferente?"},medium:{positive:"A veces asumes y a veces preguntas — lo importante es que eres capaz de ambas cosas.",watchFor:"'Seguro está enojado/a conmigo' es una historia que tu mente inventa, no necesariamente la realidad.",reflect:"¿Qué tan seguido verificas tus suposiciones?"},low:{positive:"Que te importe tanto probablemente significa que la relación es importante para ti.",watchFor:"Asumir intenciones sin verificar puede crear conflictos donde no los hay.",reflect:"La próxima vez que pienses 'seguro piensa que...', ¿podrías preguntarle directamente?"}},
+    personalization:{high:{positive:"Logras no tomarte todo de manera personal. Eso te permite responder en vez de reaccionar.",watchFor:"A veces lo que parece indiferencia puede ser no notar cuando algo sí va dirigido a ti.",reflect:"¿Hay situaciones donde deberías tomarte las cosas más en serio?"},medium:{positive:"Tienes la capacidad de separar lo personal de lo general.",watchFor:"Cuando tu pareja tiene un mal día, no necesariamente es por algo que tú hiciste.",reflect:"¿Qué te ayuda a recordar que el humor de tu pareja no siempre tiene que ver contigo?"},low:{positive:"Tu sensibilidad muestra lo conectado/a que estás. Eso es valioso.",watchFor:"Si todo lo filtras por 'qué tiene que ver conmigo', puedes terminar agotado/a.",reflect:"¿Puedes pensar en tres explicaciones alternativas cuando sientes que algo es 'contra ti'?"}},
+    reassurance_seeking:{high:{positive:"Te sientes seguro/a sin necesitar confirmación constante.",watchFor:"No necesitar reafirmación no significa que no debas darla.",reflect:"¿Con qué frecuencia le dices a tu pareja lo que sientes sin que te lo pida?"},medium:{positive:"Buscar validación de vez en cuando es completamente humano y sano.",watchFor:"Si necesitas que te digan 'todo está bien' con mucha frecuencia, vale la pena explorar qué hay detrás.",reflect:"¿La validación que buscas es sobre la relación o sobre ti mismo/a?"},low:{positive:"Necesitar saber dónde estás parado/a es natural. No te juzgues.",watchFor:"La búsqueda constante puede crear un ciclo: pides seguridad → tu pareja se cansa → te sientes más inseguro/a.",reflect:"¿Qué necesitarías para sentirte seguro/a sin tener que preguntar?"}},
+    catastrophizing:{high:{positive:"Manejas los cambios pequeños con calma. Eso aporta estabilidad.",watchFor:"Ser calmado/a es genial, pero no minimices situaciones que sí requieren atención.",reflect:"¿Alguna vez tu calma ha sido confundida con indiferencia?"},medium:{positive:"A veces imaginas lo peor y a veces logras la calma. Reconocer cuándo exageras es un gran paso.",watchFor:"Un mensaje sin responder no significa el fin de la relación.",reflect:"¿Cuántas veces lo que imaginaste como catastrófico terminó siendo algo menor?"},low:{positive:"Tu intensidad emocional muestra cuánto te importa.",watchFor:"Imaginar lo peor ante cada cambio pequeño es agotador para ti y para tu pareja.",reflect:"Antes de escalar mentalmente, ¿puedes esperar 10 minutos?"}},
+    emotional_sensitivity:{high:{positive:"Procesas las emociones con equilibrio. Eso te permite responder de forma constructiva.",watchFor:"No todo necesita ser procesado con lógica. A veces está bien simplemente sentir.",reflect:"¿Tu pareja se siente libre de expresar emociones intensas contigo?"},medium:{positive:"Tienes reacciones emocionales normales que a veces son intensas.",watchFor:"Las palabras de tu pareja pueden doler más de lo que ella imagina.",reflect:"¿Puedes identificar qué palabras o tonos te activan emocionalmente?"},low:{positive:"Sentir las cosas intensamente es parte de ser una persona profundamente emocional.",watchFor:"La reactividad intensa puede hacer que tu pareja sienta que tiene que 'caminar sobre huevos'.",reflect:"¿Qué estrategia podrías usar para darte un momento antes de reaccionar?"}},
+};
+
+const INTROSPECTION = {
+    mind_reading:["¿Cuántas veces esta semana asumiste lo que tu pareja pensaba sin preguntarle?","Si pudieras reemplazar 'seguro piensa que...' por una pregunta directa, ¿cuál sería?","¿Qué es lo peor que podría pasar si preguntas en vez de asumir?"],
+    personalization:["Cuando tu pareja tiene un mal día, ¿tu primer pensamiento es '¿qué hice yo?'","¿Puedes recordar una vez que tomaste algo personal y no tenía nada que ver contigo?","¿Qué pasaría si la próxima vez simplemente preguntaras '¿todo bien?'"],
+    reassurance_seeking:["¿Qué tan seguido necesitas escuchar 'todo está bien entre nosotros'?","Si tu pareja no te dice 'te amo' un día, ¿automáticamente piensas que algo cambió?","¿Qué señales de amor podrías aprender a reconocer que no sean palabras?"],
+    catastrophizing:["¿Cuántas veces lo que imaginaste como catastrófico resultó ser algo menor?","Cuando tu pareja cambia de tono, ¿tu mente va directo al peor escenario?","¿Podrías esperar 24 horas antes de reaccionar a algo que te preocupa?"],
+    emotional_sensitivity:["¿Hay palabras específicas de tu pareja que te activan emocionalmente más que otras?","¿Puedes distinguir entre lo que tu pareja dijo y lo que tú interpretaste?","¿Qué estrategia de 'pausa' podrías usar antes de reaccionar?"],
+};
+
+// ==================== SCORING ====================
+
+function calcDimensionScores(answers) {
+    const scores = {};
+    for (const dim of DIMENSIONS) {
+        const qs = QUESTIONS.filter(q => q.construct === dim.id);
+        let total = 0, count = 0;
+        for (const q of qs) {
+            const raw = answers[q.id];
+            if (raw == null) continue;
+            total += q.reverse ? (6 - raw) : raw;
+            count++;
+        }
+        scores[dim.id] = count > 0 ? Math.round((total / count) * 100) / 100 : 0;
+    }
+    return scores;
+}
+
+function calcPatternScores(scenarioAnswers) {
+    const scores = {};
+    for (const p of SCENARIO_PATTERNS) {
+        const ss = SCENARIOS.filter(s => s.pattern === p.id);
+        let total = 0, count = 0;
+        for (const s of ss) {
+            const chosen = scenarioAnswers[s.id];
+            if (!chosen) continue;
+            const opt = s.options.find(o => o.style === chosen);
+            if (opt) { total += opt.score; count++; }
+        }
+        scores[p.id] = count > 0 ? Math.round((total / count) * 100) / 100 : 0;
+    }
+    return scores;
+}
+
+function calcDominantStyle(scenarioAnswers) {
+    const b = { secure:0, anxious:0, avoidant:0, reactive:0 };
+    for (const style of Object.values(scenarioAnswers)) {
+        if (b[style] !== undefined) b[style]++;
+    }
+    const dominant = Object.entries(b).sort((a,c) => c[1] - a[1])[0][0];
+    return { dominant, breakdown: b };
+}
+
+function getDimLevel(score) { return score >= 4.0 ? "high" : score >= 2.5 ? "medium" : "low"; }
+function getPatLevel(score) { return score >= 3.5 ? "high" : score >= 2.0 ? "medium" : "low"; }
+
+function getDimInterp(score) {
+    if (score >= 4.0) return { level:"Fortaleza", color:"green" };
+    if (score >= 3.0) return { level:"Saludable", color:"blue" };
+    if (score >= 2.0) return { level:"Oportunidad", color:"yellow" };
+    return { level:"Atención", color:"red" };
+}
+
+function getPatInterp(score) {
+    if (score >= 3.5) return { level:"Seguro", color:"green" };
+    if (score >= 2.5) return { level:"Moderado", color:"blue" };
+    if (score >= 1.5) return { level:"Atención", color:"yellow" };
+    return { level:"Alerta", color:"red" };
+}
+
+// ==================== STATE ====================
+
+let state = {
+    screen: "intro", // intro | likert | transition | scenarios | results
+    likertAnswers: {},
+    scenarioAnswers: {},
+    currentGroupIndex: 0,
+    userName: "",
+};
+
+// ==================== RENDER ====================
+
+function render() {
+    const app = document.getElementById("app");
+    switch (state.screen) {
+        case "intro": app.innerHTML = renderIntro(); break;
+        case "likert": app.innerHTML = renderLikert(); break;
+        case "transition": app.innerHTML = renderTransition(); break;
+        case "scenarios": app.innerHTML = renderScenarios(); break;
+        case "results": app.innerHTML = renderResults(); break;
+    }
+}
+
+function renderIntro() {
+    return `
+    <div class="container" style="padding-top:40px">
+        <div class="card card-pink text-center space-y">
+            <div style="font-size:48px">💕</div>
+            <h1>Test del Amor</h1>
+            <p class="subtitle">Descubre tu estilo de relación con 45 preguntas basadas en investigación psicológica.</p>
+            <p class="text-xs" style="color:#6B7280">25 preguntas Likert + 20 escenarios reales</p>
+        </div>
+        <div class="card space-y">
+            <h3>¿Qué vas a descubrir?</h3>
+            <div class="grid-2">
+                ${DIMENSIONS.map(d => `<div class="grid-item ${d.color}">${d.name}</div>`).join("")}
+            </div>
+            <h3 class="mt-4">5 Patrones de Reacción</h3>
+            <div class="grid-2">
+                ${SCENARIO_PATTERNS.map(p => `<div class="grid-item ${p.color}">${p.name}</div>`).join("")}
+            </div>
+        </div>
+        <div style="margin-bottom:8px">
+            <label style="font-weight:700;font-size:14px;display:block;margin-bottom:8px">Tu nombre (opcional):</label>
+            <input class="couple-input" id="nameInput" type="text" placeholder="Ej: Ana" maxlength="20">
+        </div>
+        <button class="btn btn-primary" onclick="startTest()">INICIAR TEST</button>
+        <p class="text-center text-xs mt-3" style="color:#9CA3AF">45 preguntas | ~10 minutos<br>Sin registro. Tus datos no se guardan.</p>
+    </div>`;
+}
+
+function renderHeader() {
+    const totalQ = QUESTIONS.length + SCENARIOS.length;
+    const answered = Object.keys(state.likertAnswers).length + Object.keys(state.scenarioAnswers).length;
+    const pct = Math.round((answered / totalQ) * 100);
+    return `
+    <div class="header">
+        <div class="header-inner">
+            <div class="header-top">
+                <a href="#" onclick="goIntro();return false" style="font-size:14px;font-weight:700;text-decoration:underline">Salir</a>
+                <span style="font-size:14px;font-weight:700">${answered}/${totalQ}</span>
+            </div>
+            <div class="progress"><div class="progress-fill" style="width:${pct}%"></div></div>
+        </div>
+    </div>`;
+}
+
+function renderLikert() {
+    const groups = DIMENSIONS.map(dim => ({ dim, qs: QUESTIONS.filter(q => q.construct === dim.id) }));
+    const g = groups[state.currentGroupIndex];
+    let offset = 0;
+    for (let i = 0; i < state.currentGroupIndex; i++) offset += groups[i].qs.length;
+    const totalQ = QUESTIONS.length + SCENARIOS.length;
+    const isLast = state.currentGroupIndex === groups.length - 1;
+    const allAnswered = g.qs.every(q => state.likertAnswers[q.id] != null);
+
+    return renderHeader() + `
+    <div class="container space-y">
+        <div class="group-header ${g.dim.color}">
+            <div class="group-header-top">
+                <h3>${g.dim.name}</h3>
+                <span class="group-badge">${state.currentGroupIndex + 1}/${groups.length}</span>
+            </div>
+            <p class="text-xs mt-2">${g.dim.desc}</p>
+        </div>
+        ${g.qs.map((q, idx) => `
+            <div class="card">
+                <p class="text-xs font-bold uppercase" style="color:#6B7280;margin-bottom:12px">Pregunta ${offset + idx + 1} de ${totalQ}</p>
+                <p style="font-weight:700;font-size:18px;margin-bottom:16px">${q.text}</p>
+                ${LIKERT_OPTIONS.map(o => `
+                    <button class="option-btn ${state.likertAnswers[q.id] === o.value ? 'selected' : ''}" onclick="answerLikert('${q.id}',${o.value})">
+                        <span class="option-letter">${o.value}</span>
+                        <span class="option-text">${o.label}</span>
+                    </button>
+                `).join("")}
+            </div>
+        `).join("")}
+        <div class="btn-row">
+            ${state.currentGroupIndex > 0 ? `<button class="btn btn-outline" onclick="prevGroup()">← Anterior</button>` : ''}
+            <button class="btn btn-primary" onclick="${isLast ? 'goTransition()' : 'nextGroup()'}" ${allAnswered ? '' : 'disabled'}>
+                Siguiente →
+            </button>
+        </div>
+    </div>`;
+}
+
+function renderTransition() {
+    return `
+    <div class="transition-screen">
+        <div class="card card-pink text-center space-y" style="max-width:480px">
+            <div style="font-size:48px">✨</div>
+            <h2>¡Excelente!</h2>
+            <p class="subtitle">Ahora vamos con situaciones reales. Lee cada escenario y elige la opción que más se parezca a cómo reaccionarías tú.</p>
+            <p class="text-xs" style="color:#6B7280">No hay respuestas correctas o incorrectas — solo queremos conocer tu estilo.</p>
+            <button class="btn btn-primary" onclick="goScenarios()">CONTINUAR →</button>
+        </div>
+    </div>`;
+}
+
+function renderScenarios() {
+    const groups = SCENARIO_PATTERNS.map(p => ({ pattern: p, ss: SCENARIOS.filter(s => s.pattern === p.id) }));
+    const g = groups[state.currentGroupIndex];
+    let offset = QUESTIONS.length;
+    for (let i = 0; i < state.currentGroupIndex; i++) offset += groups[i].ss.length;
+    const totalQ = QUESTIONS.length + SCENARIOS.length;
+    const isLast = state.currentGroupIndex === groups.length - 1;
+    const allAnswered = g.ss.every(s => state.scenarioAnswers[s.id] != null);
+    const letters = ["A","B","C","D"];
+
+    return renderHeader() + `
+    <div class="container space-y">
+        <div class="group-header ${g.pattern.color}">
+            <div class="group-header-top">
+                <h3>${g.pattern.name}</h3>
+                <span class="group-badge">${state.currentGroupIndex + 1}/${groups.length}</span>
+            </div>
+            <p class="text-xs mt-2">${g.pattern.desc}</p>
+            <span class="phase-badge">Escenarios</span>
+        </div>
+        ${g.ss.map((s, idx) => `
+            <div class="card">
+                <p class="text-xs font-bold uppercase" style="color:#6B7280;margin-bottom:12px">Pregunta ${offset + idx + 1} de ${totalQ}</p>
+                <p style="font-weight:700;font-size:18px;margin-bottom:16px">${s.text}</p>
+                ${s.options.map((o, oi) => `
+                    <button class="option-btn ${state.scenarioAnswers[s.id] === o.style ? 'selected' : ''}" onclick="answerScenario('${s.id}','${o.style}')">
+                        <span class="option-letter">${letters[oi]}</span>
+                        <span class="option-text">${o.label}</span>
+                    </button>
+                `).join("")}
+            </div>
+        `).join("")}
+        <div class="btn-row">
+            <button class="btn btn-outline" onclick="prevScenarioGroup()">← Anterior</button>
+            ${isLast
+                ? `<button class="btn btn-primary" onclick="submitTest()" ${allAnswered ? '' : 'disabled'}>✉ ENVIAR</button>`
+                : `<button class="btn btn-primary" onclick="nextGroup()" ${allAnswered ? '' : 'disabled'}>Siguiente →</button>`
+            }
+        </div>
+    </div>`;
+}
+
+function renderResults() {
+    const dimScores = calcDimensionScores(state.likertAnswers);
+    const patScores = calcPatternScores(state.scenarioAnswers);
+    const { dominant, breakdown } = calcDominantStyle(state.scenarioAnswers);
+    const style = RESPONSE_STYLES[dominant];
+    const total = Object.values(breakdown).reduce((a,b) => a+b, 0);
+    const name = state.userName || "Yo";
+
+    return `
+    <div class="header">
+        <div class="header-inner" style="display:flex;justify-content:space-between;align-items:center">
+            <a href="#" onclick="goIntro();return false" style="font-size:14px;font-weight:700;text-decoration:underline">← Volver</a>
+            <div style="display:flex;align-items:center;gap:8px"><span style="font-size:24px">💕</span><h1 style="font-size:20px">Resultados</h1></div>
+            <div style="width:40px"></div>
+        </div>
+    </div>
+    <div class="container space-y">
+
+        <!-- Style Profile -->
+        <div class="card ${dominant === 'secure' ? 'card-green' : dominant === 'anxious' ? 'card-blue' : dominant === 'avoidant' ? '' : 'card-red'}">
+            <p class="text-xs font-bold uppercase" style="color:#6B7280">Tu Estilo de Respuesta</p>
+            <h2 style="margin:4px 0">${style.name}</h2>
+            <p class="text-sm" style="color:#374151;margin-bottom:16px">${style.desc}</p>
+            ${Object.entries(RESPONSE_STYLES).map(([key, s]) => {
+                const count = breakdown[key] || 0;
+                const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+                return `
+                <div class="style-bar">
+                    <div class="style-label"><span>${s.name}</span><span>${pct}% (${count})</span></div>
+                    <div class="style-track"><div class="style-fill ${s.color}" style="width:${pct}%"></div></div>
+                </div>`;
+            }).join("")}
+        </div>
+
+        <!-- Dimensions -->
+        <h3>Tus Dimensiones</h3>
+        ${DIMENSIONS.map(dim => {
+            const score = dimScores[dim.id] || 0;
+            const interp = getDimInterp(score);
+            const level = getDimLevel(score);
+            const fb = DIM_FEEDBACK[dim.id]?.[level];
+            return `
+            <div class="card ${dim.color}">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                    <h3 style="margin:0">${dim.name}</h3>
+                    <span class="badge badge-${interp.color}">${interp.level}</span>
+                </div>
+                <p class="text-xs mb-3" style="color:#6B7280">${dim.desc}</p>
+                <div class="score-bar-wrap">
+                    <div class="score-bar-label"><span class="uppercase">${name}</span><span>${score.toFixed(1)}</span></div>
+                    <div class="score-bar"><div class="score-bar-fill fill-${interp.color}" style="width:${(score/5)*100}%"></div></div>
+                </div>
+                ${fb ? renderFeedback(fb) : ''}
+            </div>`;
+        }).join("")}
+
+        <!-- Patterns -->
+        <h3>Tus Patrones de Reacción</h3>
+        ${SCENARIO_PATTERNS.map(p => {
+            const score = patScores[p.id] || 0;
+            const interp = getPatInterp(score);
+            const level = getPatLevel(score);
+            const fb = PAT_FEEDBACK[p.id]?.[level];
+            return `
+            <div class="card ${p.color}">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                    <h3 style="margin:0">${p.name}</h3>
+                    <span class="badge badge-${interp.color}">${interp.level}</span>
+                </div>
+                <p class="text-xs mb-3" style="color:#6B7280">${p.desc}</p>
+                <div class="score-bar-wrap">
+                    <div class="score-bar-label"><span class="uppercase">${name}</span><span>${score.toFixed(1)}/4.0</span></div>
+                    <div class="score-bar"><div class="score-bar-fill fill-${interp.color}" style="width:${(score/4)*100}%"></div></div>
+                </div>
+                ${fb ? renderFeedback(fb) : ''}
+            </div>`;
+        }).join("")}
+
+        <!-- Introspection -->
+        ${renderIntrospection(patScores)}
+
+        <!-- Share -->
+        <div class="card card-pink text-center">
+            <h3>¿Te gustó?</h3>
+            <p class="text-sm mt-2">Comparte este test con tu pareja o amigos.</p>
+            <button class="btn btn-primary mt-3" onclick="shareTest()">COMPARTIR 💕</button>
+        </div>
+
+        <button class="btn btn-outline" onclick="goIntro()">VOLVER AL INICIO</button>
+        <p class="text-center text-xs mt-3 mb-4" style="color:#9CA3AF">El Medidorcito — Test del Amor v2<br>Basado en: ECR-R, Trust Scale, CPQ, SIS, DSI</p>
+    </div>`;
+}
+
+function renderFeedback(fb) {
+    return `
+    <div style="margin-top:12px">
+        ${fb.positive ? `<div class="feedback-item"><span>✅</span><span>${fb.positive}</span></div>` : ''}
+        ${fb.watchFor ? `<div class="feedback-item"><span>⚠️</span><span>${fb.watchFor}</span></div>` : ''}
+        ${fb.reflect ? `<div class="feedback-item"><span>💭</span><span class="italic">${fb.reflect}</span></div>` : ''}
+    </div>`;
+}
+
+function renderIntrospection(patScores) {
+    const sorted = Object.entries(patScores).sort((a,b) => a[1] - b[1]).slice(0, 3);
+    if (sorted.length === 0) return '';
+    return `
+    <div class="card card-purple">
+        <h3>Para Reflexionar</h3>
+        <p class="text-xs mb-4" style="color:#6B7280">Preguntas para explorar tus patrones de reacción más activos.</p>
+        ${sorted.map(([pid, score]) => {
+            const p = SCENARIO_PATTERNS.find(x => x.id === pid);
+            const prompts = INTROSPECTION[pid];
+            if (!p || !prompts) return '';
+            return `
+            <div class="mb-4">
+                <p class="font-bold text-sm mb-2">${p.name} <span style="color:#6B7280;font-weight:400">(${score.toFixed(1)}/4.0)</span></p>
+                ${prompts.map(pr => `<div class="intro-prompt"><span class="intro-dot">•</span><span>${pr}</span></div>`).join("")}
+            </div>`;
+        }).join("")}
+    </div>`;
+}
+
+// ==================== ACTIONS ====================
+
+function startTest() {
+    const input = document.getElementById("nameInput");
+    state.userName = input ? input.value.trim() : "";
+    state.likertAnswers = {};
+    state.scenarioAnswers = {};
+    state.currentGroupIndex = 0;
+    state.screen = "likert";
+    render();
+    window.scrollTo(0, 0);
+}
+
+function goIntro() {
+    state.screen = "intro";
+    render();
+    window.scrollTo(0, 0);
+}
+
+function answerLikert(qId, val) {
+    state.likertAnswers[qId] = val;
+    render();
+}
+
+function answerScenario(sId, style) {
+    state.scenarioAnswers[sId] = style;
+    render();
+}
+
+function nextGroup() {
+    state.currentGroupIndex++;
+    render();
+    window.scrollTo(0, 0);
+}
+
+function prevGroup() {
+    if (state.currentGroupIndex > 0) {
+        state.currentGroupIndex--;
+        render();
+        window.scrollTo(0, 0);
+    }
+}
+
+function goTransition() {
+    state.screen = "transition";
+    render();
+    window.scrollTo(0, 0);
+}
+
+function goScenarios() {
+    state.screen = "scenarios";
+    state.currentGroupIndex = 0;
+    render();
+    window.scrollTo(0, 0);
+}
+
+function prevScenarioGroup() {
+    if (state.currentGroupIndex > 0) {
+        state.currentGroupIndex--;
+        render();
+        window.scrollTo(0, 0);
+    } else {
+        state.screen = "transition";
+        render();
+        window.scrollTo(0, 0);
+    }
+}
+
+function submitTest() {
+    const unansweredL = QUESTIONS.filter(q => state.likertAnswers[q.id] == null).length;
+    const unansweredS = SCENARIOS.filter(s => state.scenarioAnswers[s.id] == null).length;
+    if (unansweredL + unansweredS > 0) {
+        alert(`Faltan ${unansweredL + unansweredS} preguntas por responder.`);
+        return;
+    }
+    state.screen = "results";
+    render();
+    window.scrollTo(0, 0);
+}
+
+function shareTest() {
+    const url = window.location.href.split('?')[0];
+    const text = "Haz el Test del Amor y descubre tu estilo de relación 💕";
+    if (navigator.share) {
+        navigator.share({ title: "Test del Amor", text, url }).catch(() => {});
+    } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => alert("¡Link copiado!")).catch(() => {
+            prompt("Copia este link:", url);
+        });
+    } else {
+        prompt("Copia este link:", url);
+    }
+}
+
+// Init
+render();
+</script>
+</body>
+</html>

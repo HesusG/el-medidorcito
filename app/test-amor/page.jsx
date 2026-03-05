@@ -8,8 +8,8 @@ import { doc, getDoc } from "firebase/firestore";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { createLoveTest, getLatestLoveTest } from "@/services/loveTestService";
-import { DIMENSIONS } from "@/lib/loveTestQuestions";
-import { ArrowLeft, HeartPulse, Clock, CheckCircle, Play } from "lucide-react";
+import { DIMENSIONS, SCENARIO_PATTERNS } from "@/lib/loveTestQuestions";
+import { ArrowLeft, HeartPulse, Clock, CheckCircle, Play, Eye } from "lucide-react";
 import Link from "next/link";
 
 export default function TestAmorPage() {
@@ -71,6 +71,7 @@ export default function TestAmorPage() {
     const myResponse = latestTest?.responses?.[user.uid];
     const partnerResponded = latestTest && Object.keys(latestTest.responses || {}).some(uid => uid !== user.uid);
     const testComplete = latestTest?.status === "complete";
+    const testPartial = latestTest?.status === "partial";
     const testPending = latestTest?.status === "pending";
     const iHaveResponded = !!myResponse;
 
@@ -100,7 +101,8 @@ export default function TestAmorPage() {
                         <h2 className="font-black text-2xl uppercase">Test del Amor</h2>
                         <p className="text-sm font-medium text-gray-700">
                             Un test basado en investigación psicológica para evaluar 6 dimensiones
-                            clave de tu relación. Ambos contestan por separado y luego comparan resultados.
+                            clave de tu relación y 5 patrones de reacción ante situaciones reales.
+                            Ambos contestan por separado y luego comparan resultados.
                         </p>
                     </div>
                 </Card>
@@ -117,6 +119,18 @@ export default function TestAmorPage() {
                     </div>
                 </div>
 
+                {/* Patterns preview */}
+                <div>
+                    <h3 className="font-bold text-sm uppercase mb-3">5 Patrones de Reacción</h3>
+                    <div className="grid grid-cols-2 gap-2">
+                        {SCENARIO_PATTERNS.map(p => (
+                            <div key={p.id} className={`p-3 border-2 border-black ${p.color}`}>
+                                <p className="font-bold text-xs uppercase">{p.name}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
                 {/* Status / Actions */}
                 {testComplete && (
                     <Card className="bg-green-100">
@@ -125,7 +139,7 @@ export default function TestAmorPage() {
                             <span className="font-bold text-green-800">Test Completado</span>
                         </div>
                         <p className="text-sm mb-4">Ambos han completado el test. Revisa los resultados.</p>
-                        <Link href={`/test-amor/results?id=${latestTest.id}`}>
+                        <Link href={`/test-amor/results?id=${latestTest.id}&tab=couple`}>
                             <Button className="w-full">VER RESULTADOS</Button>
                         </Link>
                         <div className="mt-3">
@@ -136,17 +150,23 @@ export default function TestAmorPage() {
                     </Card>
                 )}
 
-                {testPending && iHaveResponded && !partnerResponded && (
+                {(testPartial || testPending) && iHaveResponded && (
                     <Card className="bg-yellow-100">
                         <div className="flex items-center gap-3 mb-3">
                             <Clock className="w-6 h-6 text-yellow-600" />
                             <span className="font-bold text-yellow-800">Esperando a tu pareja...</span>
                         </div>
-                        <p className="text-sm">Ya completaste tu parte. Tu pareja necesita responder para ver los resultados.</p>
+                        <p className="text-sm mb-4">Ya completaste tu parte. Mientras tanto, puedes ver tus resultados personales.</p>
+                        <Link href={`/test-amor/results?id=${latestTest.id}&tab=personal`}>
+                            <Button className="w-full">
+                                <Eye className="w-4 h-4 mr-2" />
+                                VER MIS RESULTADOS
+                            </Button>
+                        </Link>
                     </Card>
                 )}
 
-                {testPending && !iHaveResponded && (
+                {(testPartial || testPending) && !iHaveResponded && (
                     <Card className="bg-blue-100">
                         <div className="flex items-center gap-3 mb-3">
                             <Play className="w-6 h-6 text-blue-600" />
@@ -167,7 +187,7 @@ export default function TestAmorPage() {
 
                 {/* Info */}
                 <div className="text-center text-xs text-gray-500 space-y-1">
-                    <p className="font-bold">25 preguntas | ~5 minutos</p>
+                    <p className="font-bold">45 preguntas | ~10 minutos</p>
                     <p>Basado en: ECR-R, Trust Scale, CPQ, SIS, DSI</p>
                     <p>Tus respuestas son privadas hasta que ambos completen el test.</p>
                 </div>

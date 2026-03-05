@@ -7,6 +7,15 @@
                 { "fieldPath": "coupleId", "order": "ASCENDING" },
                 { "fieldPath": "createdAt", "order": "DESCENDING" }
             ]
+        },
+        {
+            "collectionGroup": "loveTests",
+            "queryScope": "COLLECTION",
+            "fields": [
+                { "fieldPath": "coupleId", "order": "ASCENDING" },
+                { "fieldPath": "version", "order": "ASCENDING" },
+                { "fieldPath": "createdAt", "order": "DESCENDING" }
+            ]
         }
     ],
     "fieldOverrides": []
