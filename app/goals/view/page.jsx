@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useAuth } from "@/services/auth";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { db } from "@/services/firebase";
-import { doc, getDoc, collection, query, orderBy, limit, getDocs, deleteDoc } from "firebase/firestore";
+import { doc, getDoc, collection, query, orderBy, getDocs, deleteDoc } from "firebase/firestore";
 import { Button } from "@/components/ui/Button";
 import { ArrowLeft, Trash2 } from "lucide-react";
 import Link from "next/link";
@@ -13,10 +13,24 @@ import { CheckinForm } from "@/components/goals/CheckinForm";
 import { CATEGORY_COLORS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
-export default function GoalDetailPage({ params }) {
-    const { id } = use(params);
+export default function GoalDetailPage() {
+    return (
+        <Suspense fallback={
+            <div className="flex justify-center items-center h-screen bg-gray-50">
+                <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" />
+            </div>
+        }>
+            <GoalDetailContent />
+        </Suspense>
+    );
+}
+
+function GoalDetailContent() {
     const { user, loading } = useAuth();
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const id = searchParams.get("id");
+
     const [goal, setGoal] = useState(null);
     const [history, setHistory] = useState([]);
     const [isLoadingData, setIsLoadingData] = useState(true);
@@ -24,12 +38,11 @@ export default function GoalDetailPage({ params }) {
 
     useEffect(() => {
         if (!loading && !user) router.push("/login");
-        if (!loading && user) fetchData();
+        if (!loading && user && id) fetchData();
     }, [user, loading, id]);
 
     const fetchData = async () => {
         try {
-            // 1. Get Goal
             const goalSnap = await getDoc(doc(db, "goals", id));
             if (!goalSnap.exists()) {
                 alert("Meta no encontrada");
@@ -38,13 +51,10 @@ export default function GoalDetailPage({ params }) {
             }
             setGoal({ id: goalSnap.id, ...goalSnap.data() });
 
-            // 2. Get History (Checkins)
             const q = query(collection(db, "goals", id, "checkins"), orderBy("weekKey", "asc"));
             const snap = await getDocs(q);
             const docs = snap.docs.map(d => d.data());
 
-            // Transform for Chart
-            // Group by weekKey
             const grouped = {};
             docs.forEach(d => {
                 if (!grouped[d.weekKey]) grouped[d.weekKey] = { week: d.weekKey };
@@ -53,7 +63,6 @@ export default function GoalDetailPage({ params }) {
             });
             const chartData = Object.values(grouped).sort((a, b) => a.week.localeCompare(b.week));
             setHistory(chartData);
-
         } catch (err) {
             console.error(err);
         } finally {

@@ -17,7 +17,7 @@ export function GoalCard({ goal, myName = "YO", partnerName = "PAREJA" }) {
     const isOngoing = goal.type === "ongoing";
 
     return (
-        <Link href={`/goals/${id}`}>
+        <Link href={`/goals/view?id=${id}`}>
             <Card
                 className="p-4 hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer relative group"
                 style={{ backgroundColor: goal.cardColor || "#FFFFFF" }}
